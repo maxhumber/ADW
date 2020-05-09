@@ -1,4 +1,6 @@
 from gazpacho import get, Soup # pip install gazpacho
+import time
+from tqdm import tqdm # pip install tqdm
 
 # parsers
 
@@ -32,32 +34,29 @@ def url_to_ingredients(url):
         raise Exception('NotAllowed')
     return ingredients
 
-# testing sandbox
-import time
+# parse an ingredient
+
+def parse_ingredient(i):
+    x = i.split(' ')
+    quantity = x[0]
+    unit = x[1]
+    name = ' '.join(x[2:])
+    return (quantity, unit), name
+
+# run through an collate ingredients
 
 urls = [
-    'https://www.bonappetit.com/recipe/vegetarian-green-curry',
-    'https://www.bonappetit.com/recipe/banana-bread',
-    'https://www.allrecipes.com/recipe/45688/coconut-curry-tofu/',
-    'https://www.allrecipes.com/recipe/172367/mango-pina-colada-smoothie',
-    'https://tasty.co/recipe/dutch-oven-jalapeno-cheddar-bread',
     'https://tasty.co/recipe/the-best-ever-vegan-brownies',
+    'https://www.allrecipes.com/recipe/172367/mango-pina-colada-smoothie',
+    'https://www.bonappetit.com/recipe/cucumber-tomatillo-gazpacho'
 ]
 
-from tqdm import tqdm # pip install tqdm
+def url_to_parsed_ingredients(url):
+    ingredients = url_to_ingredients(url)
+    return [parse_ingredient(i) for i in ingredients]
 
+grocery_list = []
 for url in tqdm(urls):
-    print(url_to_ingredients(url))
+    i = url_to_parsed_ingredients(url)
+    grocery_list.extend(i)
     time.sleep(0.5)
-
-# test on parsing
-
-url = 'https://www.bonappetit.com/recipe/cucumber-tomatillo-gazpacho'
-
-
-
-
-
-
-
-#
