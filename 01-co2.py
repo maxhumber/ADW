@@ -41,7 +41,7 @@ def plot(year):
     points = np.array([x, y]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
     plt.figure(figsize=(8, 5))
-    lc = LineCollection(segments, cmap=plt.get_cmap('viridis'), norm=plt.Normalize(100, 500))
+    lc = LineCollection(segments, cmap=plt.get_cmap('viridis'), norm=plt.Normalize(100, 400))
     lc.set_array(c)
     lc.set_linewidth(3)
     ax = plt.gca()
@@ -49,7 +49,7 @@ def plot(year):
     plt.xlim(min(x), max(x) + 100_000/10*2);
     plt.ylim(0, 500);
 
-plot(-500_000)
+plot(2020)
 plt.title("CO2 (ppm) from 800,000BC to Present")
 plt.xlabel("Year")
 plt.ylabel("CO2 (ppm)")
@@ -64,7 +64,7 @@ def plot(year):
     points = np.array([x, y]).T.reshape(-1, 1, 2)
     segments = np.concatenate([points[:-1], points[1:]], axis=1)
     plt.figure(figsize=(8, 5))
-    lc = LineCollection(segments, cmap=plt.get_cmap('viridis'), norm=plt.Normalize(100, 500))
+    lc = LineCollection(segments, cmap=plt.get_cmap('viridis'), norm=plt.Normalize(100, 400))
     lc.set_array(c)
     lc.set_linewidth(3)
     ax = plt.gca()
@@ -83,7 +83,7 @@ for year in range(-800_000, 5_000, 1_000):
 gif.save(frames, "output/co2.gif", duration=10)
 
 
-# last image
+# repeat last image 100 times
 
 gif.options.matplotlib['dpi'] = 150
 
