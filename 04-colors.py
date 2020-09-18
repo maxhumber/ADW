@@ -1,10 +1,9 @@
 from PIL import Image
 from matplotlib import pyplot as plt
 
-file = 'data/during.png'
+file = 'data/wave.jpg'
 
 im = Image.open(file)
-im.convert('P', colors=10)
 
 plt.imshow(im);
 
@@ -24,6 +23,7 @@ palette = colorgram.extract(file, colors)
 rgbs = [color.rgb for color in palette]
 hexcodes = [rgb2hex(c.r, c.g, c.b) for c in rgbs]
 
+# grid design
 # https://jakevdp.github.io/PythonDataScienceHandbook/04.08-multiple-subplots.html
 
 columns = colors
@@ -56,14 +56,12 @@ for subplot in subplots:
     for spine in subplot.spines.values():
         spine.set_visible(False)
 
-figure.suptitle("During", y=0.925)
+figure.suptitle("Wave", y=0.925)
 
 # https://www.youtube.com/watch?v=6EcPEOpyApI
 # https://www.reddit.com/r/pics/comments/iq0gph/one_day_difference_in_fort_collins_colorado/
 
 import gif
-
-gif.options.matplotlib['dpi'] = 300
 
 @gif.frame
 def plot(image_path, title, colors=5):
@@ -105,6 +103,7 @@ def plot(image_path, title, colors=5):
 
     figure.suptitle(title, y=0.925);
 
+gif.options.matplotlib['dpi'] = 200
 
 frames = []
 files = ['before', 'during', 'after']
@@ -112,6 +111,4 @@ for file in files:
     frame = plot(f"data/{file}.png", title=f"Cameron Peak Fire: {file.capitalize()}")
     frames.append(frame)
 
-gif.options.matplotlib['dpi'] = 300
-
-gif.save(frames, 'output/colors.gif', duration=3, unit='s', between='startend')
+gif.save(frames, 'output/colors.gif', duration=4, unit='s', between='startend')

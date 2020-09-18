@@ -90,3 +90,36 @@ for gamma, C in product(gammas, Cs):
     frames.append(frame)
 
 gif.save(frames, "output/mesh.gif", duration=2, unit='s')
+
+# knn
+
+@gif.frame
+def plot(model):
+    model.fit(X_train, y_train)
+    score = model.score(X_test, y_test)
+    Z = model.predict_proba(np.c_[xx.ravel(), yy.ravel()])[:, 1]
+    Z = Z.reshape(xx.shape)
+    cm = plt.cm.viridis
+    cm_bright = ListedColormap([cm.colors[0], cm.colors[-1]])
+    fig, ax = plt.subplots(figsize=(8, 8))
+    ax.contourf(xx, yy, Z, cmap=cm, alpha=.8)
+    ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright,
+               edgecolors='k')
+    ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright,
+               edgecolors='k', alpha=0.6)
+    ax.set_xlim(xx.min(), xx.max())
+    ax.set_ylim(yy.min(), yy.max())
+    ax.set_xticks(())
+    ax.set_yticks(())
+    ax.text(xx.max() - .3, yy.min() + .3, ('%.2f' % score).lstrip('0'),
+            size=15, horizontalalignment='right')
+    fig.suptitle(f"KNeighborsClassifier({model.n_neighbors})")
+
+gif.options.matplotlib['dpi'] = 200
+
+frames = []
+for n in range(1, 20):
+    frame = plot(KNeighborsClassifier(n))
+    frames.append(frame)
+
+gif.save(frames, "output/mesh.gif", duration=1, unit='s')
