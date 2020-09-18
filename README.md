@@ -11,46 +11,21 @@ In this session, you'll learn how to turn any matplotlib plot into an animated g
 ### Requirements
 
 ```python
-pip install altair
 pip install matplotlib
-pip install gif[altair]
+pip install gif[matplotlib]
 ```
 
 
 
 ### Outline
 
-Introduction
+Learn how to make popular r/DataIsBeautiful Graphs!
 
-- Basic Review of matplotlib
+| Original                                                     | matplotlib+gif                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![](https://i.redd.it/cmuej419oxh51.gif) Source: [r/DataIsBeautiful](https://www.reddit.com/r/dataisbeautiful/comments/ickvfq/oc_two_thousand_years_of_global_temperatures_in/g234slz/) | ![](https://raw.githubusercontent.com/maxhumber/ADW/master/output/co2.gif) |
+| ![](https://i.redd.it/k3cnngk8pzk51.jpg) Source: [r/DataIsBeautiful](https://www.reddit.com/r/dataisbeautiful/comments/im13tq/i_made_a_very_simple_graphic_to_show_the/g3wa56o/) | ![](https://raw.githubusercontent.com/maxhumber/ADW/master/output/covid.gif) |
+|                                                              |                                                              |
+|                                                              |                                                              |
+|                                                              |                                                              |
 
-Plot Prep
-
-- Making sure that we have the right data
-- Tweaking figure and canvas sizes
-- Adjusting backgrounds
-- Turning matplotlib plots into functions
-
-Animation Basics
-
-- Overview of the matplotlib.animation module
-- Using FuncAnimation to animate plots
-- Using the gif.frame decorator to animate plots
-
-Q&A/Break
-
-Animation Examples
-
-- How to style animated gifs
-- How to using 3D inside of animated gifs
-- How to recreate popular /r/dataisbeautiful plots
-
-Q&A/Break
-
-Animated ML
-
-- How to visualize machine learning hyperparameters
-- How to visualize model diagnostics
-- How to tell a convincing machine learning story
-
-Q&A/Conclusion

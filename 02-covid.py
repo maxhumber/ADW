@@ -90,7 +90,7 @@ plot(3)
 def plot(week):
     w20 = df20[df20["mmwr_week"] <= week]
     max_date = w20["week_ending_date"].max()
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(7, 4))
     plt.plot(df19['mmwr_week'], df19['all_cause'], color="gray", linestyle='dashed', linewidth=2)
     plt.plot(w20['mmwr_week'], w20['all_cause'], color="red", linewidth=3)
     plt.vlines(week, 0, 100_000, color='black')
@@ -101,14 +101,11 @@ def plot(week):
     ax.set_xticklabels([f'Week {week} ({max_date.strftime("%B")})'])
     ax.set_yticklabels([0, "20K", "40K", "60K", "80K", "\n100K\nWeekly\nDeaths"])
 
-gif.options.matplotlib["dpi"] = 300
+gif.options.matplotlib["dpi"] = 200
 
 frames = []
-for week in range(1, 30):
+for week in list(range(1, 29+1)) + [29] * 10:
     frame = plot(week)
     frames.append(frame)
-
-last_frame_x10 = [frames[-1]] * 10
-frames.extend(last_frame_x10)
 
 gif.save(frames, "output/covid.gif", duration=100)
