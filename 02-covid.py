@@ -1,4 +1,5 @@
 # https://www.reddit.com/r/dataisbeautiful/comments/im13tq/i_made_a_very_simple_graphic_to_show_the/g3wa56o/
+# Exported October 21, 2020: https://data.cdc.gov/NCHS/Weekly-Counts-of-Deaths-by-State-and-Select-Causes/muzy-jte6
 
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -18,7 +19,7 @@ df = df[[
     'covid-19_(u071,_multiple_cause_of_death)',
     'covid-19_(u071,_underlying_cause_of_death)',
 ]]
-df = df[df['week_ending_date'] < "2020-08-01"]
+df = df[df['week_ending_date'] < "2020-09-21"]
 df = df.reset_index(drop=True)
 
 # first
@@ -104,7 +105,7 @@ def plot(week):
 gif.options.matplotlib["dpi"] = 200
 
 frames = []
-for week in list(range(1, 29+1)) + [29] * 10:
+for week in list(range(1, 38+1)) + [38] * 10:
     frame = plot(week)
     frames.append(frame)
 
